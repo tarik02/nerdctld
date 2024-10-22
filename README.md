@@ -7,7 +7,7 @@ This is a daemon offering a `nerdctl.sock` endpoint.
 It can be used with `DOCKER_HOST=unix://nerdctl.sock`.
 
 | :exclamation: Currently it mostly handles the images, for containerd k8s clusters. |
-|----------------------------------------------------------------------------------- |
+| ---------------------------------------------------------------------------------- |
 | There is some limited information about version and info, containers and volumes.  |
 
 Normally the `nerdctl` tool is a CLI-only application.
@@ -24,28 +24,28 @@ The Docker API (REST) is available at:
 
 <https://docs.docker.com/engine/api/>
 
-Docker version | API version
---- | ---
-25.0 | 1.44
-24.0 | 1.43
-23.0 | 1.42
-... | ...
-20.10 | 1.41
-19.03 | 1.40
-18.09 | 1.39
-... | ...
-17.03 | 1.26
-1.13 | 1.25
-1.12 | 1.24
+| Docker version | API version |
+| -------------- | ----------- |
+| 25.0           | 1.44        |
+| 24.0           | 1.43        |
+| 23.0           | 1.42        |
+| ...            | ...         |
+| 20.10          | 1.41        |
+| 19.03          | 1.40        |
+| 18.09          | 1.39        |
+| ...            | ...         |
+| 17.03          | 1.26        |
+| 1.13           | 1.25        |
+| 1.12           | 1.24        |
 
 ## Diagram
 
 ![diagram](diagram.png)
 
-* `docker.sock`
-* `nerdctl.sock`
-* `containerd.sock`
-* `buildkitd.sock`
+- `docker.sock`
+- `nerdctl.sock`
+- `containerd.sock`
+- `buildkitd.sock`
 
 ## Debugging
 
@@ -217,10 +217,10 @@ And then you can mount this directory, in the kind.yaml:
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
-- role: control-plane
-  extraMounts:
-  - hostPath: /tmp/nerdctl
-    containerPath: /run/nerdctl
+  - role: control-plane
+    extraMounts:
+      - hostPath: /tmp/nerdctl
+        containerPath: /run/nerdctl
 ```
 
 Then it can be accessed from the host, using the path:
@@ -306,37 +306,40 @@ It and docs can be found at <https://gin-gonic.com/> with some nice [examples](h
 
 ## Not to be implemented
 
-* buildx*     Docker Buildx
-* compose*    Docker Compose
-* node        Manage Swarm nodes
-* swarm       Manage Swarm
+- buildx\* Docker Buildx
+- compose\* Docker Compose
+- node Manage Swarm nodes
+- swarm Manage Swarm
 
 ## Implemented commands
 
-* version
-* info (system info)
-* ps (container ls)
-* inspect (container inspect)
-* logs (container logs)
-* images (image ls)
-* inspect (image inspect)
-* history (image history)
-* load (image load)
-* pull (image pull)
-* push (image push)
-* rmi (image rm)
-* save (image save)
-* tag (image tag)
-* volume ls
-* volume inspect
-* network ls
-* network inspect
-* build
+- version
+- info (system info)
+- ps (container ls)
+- inspect (container inspect)
+- logs (container logs)
+- start (container start)
+- stop (container stop)
+- images (image ls)
+- inspect (image inspect)
+- history (image history)
+- load (image load)
+- pull (image pull)
+- push (image push)
+- rmi (image rm)
+- save (image save)
+- tag (image tag)
+- volume ls
+- volume inspect
+- network ls
+- network inspect
+- run
+- build
 
 Note: using "build" requires the `buildctl` client.
 
 It also requires a running moby `buildkitd` server.
 
-* <https://github.com/containerd/containerd>
+- <https://github.com/containerd/containerd>
 
-* <https://github.com/moby/buildkit>
+- <https://github.com/moby/buildkit>
