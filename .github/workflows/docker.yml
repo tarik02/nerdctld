@@ -30,7 +30,6 @@ jobs:
 
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
-        if: ${{ !github.event.pull_request.head.repo.fork }}
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
@@ -58,7 +57,5 @@ jobs:
         with:
           file: Containerfile
           platforms: "linux/amd64"
-          # Skip pushing when PR from a fork
-          push: ${{ !github.event.pull_request.head.repo.fork }}
           tags: ${{ steps.metadata.outputs.tags }}
           labels: ${{ steps.metadata.outputs.labels }}
